@@ -7,6 +7,9 @@ const app = express();
 const port = 3111;
 app.use(express.static(__dirname));
 
+// Set timezone to EST
+process.env.TZ = 'America/New_York';
+
 // Directory to save screenshots
 const screenshotsDir = './screenshots';
 if (!fs.existsSync(screenshotsDir)){
