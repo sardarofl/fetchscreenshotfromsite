@@ -28,7 +28,7 @@ let intervals = new Map();
 // Function to start capturing screenshots
 async function startCapturing(url, key) {
     const page = await (await browser).newPage();
-    await page.setViewport({ width: 1920, height: 1080 });
+    await page.setViewport({ width: 2560, height: 1440 });
     await page.goto(url, { waitUntil: 'networkidle0' });
 
     intervals.set(key, setInterval(async () => {
