@@ -15,7 +15,8 @@ if (!fs.existsSync(screenshotsDir)){
 
 // Initialize browser instance
 let browser = puppeteer.launch({
-    headless: 'new' // Enable new headless mode
+    headless: true, // It should be true or false, 'new' is not a valid value
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] // Disabling sandbox when running as root
 });
 
 // Map to keep track of intervals
