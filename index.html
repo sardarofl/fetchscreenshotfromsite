@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Screenshot Viewer</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Changed to black */
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border: 3px solid #000; /* Black border */
+            border-radius: 4px;
+            padding: 5px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <img id="screenshot" src="http://localhost:3111/screenshot?url=https://mylobbysignin.netlify.app/eventscalendar?siteId=1661255348928" alt="Screenshot">
+    <script>
+        const refreshInterval = 15000; // 15 seconds
+        const screenshotElement = document.getElementById('screenshot');
+
+        function updateImage() {
+			const newImage = new Image();
+			newImage.onload = function() {
+				screenshotElement.src = this.src;
+			};
+
+			// Append a timestamp to the existing URL to bust cache
+			let newSrc = `${screenshotElement.src}&time=${new Date().getTime()}`;
+			newImage.src = newSrc;
+		}
+
+        setInterval(updateImage, refreshInterval);
+    </script>
+</body>
+</html>
